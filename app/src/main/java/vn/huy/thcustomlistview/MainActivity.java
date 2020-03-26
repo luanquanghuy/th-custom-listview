@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 NhanVien nhanVien = new NhanVien(edtMa.getText().toString(), edtTen.getText().toString(), radioNu.isChecked());
                 listNV.add(nhanVien);
                 adapter.notifyDataSetChanged();
+                edtMa.setText("");
+                edtTen.setText("");
+                radioNu.setChecked(true);
             }
         });
 
@@ -59,11 +62,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                for (NhanVien nhanVien : listNV) {
-                    if (nhanVien.isDel()) {
-                        listNV.remove(nhanVien);
+                for(int i = listNV.size()-1; i >= 0; i--){
+                    if(listNV.get(i).isDel()){
+                        listNV.remove(i);
                     }
                 }
+
+//                for (NhanVien nhanVien : listNV) {
+//                    if (nhanVien.isDel()) {
+//                        listNV.remove(nhanVien);
+//                    }
+//                }
                 adapter.notifyDataSetChanged();
             }
         });
